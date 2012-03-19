@@ -4,7 +4,9 @@
     "jdk_version": "6"
   },
   "tomcat6": {
-    "java_opts": "-Xmx1024M -XX:MaxPermSize=256m"
+    "java_opts": "-Xmx1024M -XX:MaxPermSize=256m",
+    "version": "6.0.35",
+    "manager_password": "pass"
   },
   "mysql": {
     "server_root_password": "pass"
