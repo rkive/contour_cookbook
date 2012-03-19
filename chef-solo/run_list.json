@@ -1,0 +1,18 @@
+{
+  "java": {
+    "install_flavor": "oracle",
+    "jdk_version": "6"
+  },
+  "tomcat6": {
+    "java_opts": "-Xmx1024M -XX:MaxPermSize=256m"
+  },
+  "mysql": {
+    "server_root_password": "pass"
+  },
+  "run_list": [
+    "recipe[java]",
+    "recipe[mysql::server]",
+    "recipe[tomcat6]",
+    "recipe[jama_contour]"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "default_attributes": {
+    "java": {
+      "install_flavor" = "oracle"
+      "jdk_version" = "6"
+    }
+  }
+  "run_list": [
+    "recipe[jenkins]",
+    "recipe[boxgrinder]"
+  ]
+}
