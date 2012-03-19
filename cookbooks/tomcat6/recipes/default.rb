@@ -62,6 +62,11 @@ bash "update_manager" do
   EOH
 end
 
+package "wget" do
+  action :install
+  not_if {File.exists?("/usr/bin/wget")}
+end
+
 bash "install_tomcat6" do
   tomcat_version_name = "apache-tomcat-#{node[:tomcat6][:version]}"
   tomcat_version_name_tgz = "#{tomcat_version_name}.tar.gz"
@@ -149,6 +154,19 @@ when "centos"
     only_if do node[:tomcat6][:with_native] end
   end
 
+  link "/usr/bin/basename" do
+    to "/bin/basename"
+  end
+
+when "fedora"
+  link "/usr/bin/basename" do
+    to "/bin/basename"
+  end
+
+  service "iptables" do
+      supports :start => true, :stop => true, :status => true, :restart => true
+        action :stop
+  end
 
 else
 

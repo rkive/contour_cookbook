@@ -42,11 +42,17 @@ mysql_packages.each do |mysql_pack|
   end
 end
 
-if platform?(%w{ redhat centos fedora suse scientific amazon })
+if platform?(%w{ redhat  fedora suse scientific amazon })
   package 'ruby-mysql'
 elsif platform?(%w{ debian ubuntu })
   package "libmysql-ruby"
 else
+  pkgs = %w{ ruby-devel gcc gcc-c++ automake autoconf make }
+  
+  pkgs.each do |pkg|
+    package pkg
+  end
+  
   gem_package "mysql" do
     action :install
   end
