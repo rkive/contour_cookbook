@@ -1,8 +1,52 @@
 = DESCRIPTION:
 
+Installs Jama Software Contour.
+
 = REQUIREMENTS:
+
+== Platform and Application Environment:
+
+Tested on CentOS 6.2
+
+Requires the following Opscode cookbooks:
+
+database
+java
+tomcat6
+mysql
 
 = ATTRIBUTES:
 
+See `attributes/default.rb` for default values.
+
+* `node[:jama_contour"][:version]` - Version of Jama Contour to install
+* `node[:jama_contour'][:webapp_dir]` - Default webapp location. Defaults to your tomcat6 webapps location.
+* `node[:jama_contour'][:home]` - name of contour_home to store contour configuration.
+* `node[:jama_contour'][:mysql][:db]` - db name for mysql installation
+* `node[:jama_contour'][:mysql][:user]` - db username for mysql installation
+* `node[:jama_contour'][:mysql][:pass]` - db password for mysql installation
+
 = USAGE:
 
+You should set the following JAVA_OPTS on your node. An easy way to set this to define:
+
+node[:tomcat6][:java_opts] = "-Xmx1024M -XX:MaxPermSize=256m"
+
+License and Author
+==================
+
+Author:: Aaron Bento (<abento+github@gmail.com>)
+
+Copyright:: 2012, Aaron Bento
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
