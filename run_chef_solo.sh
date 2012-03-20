@@ -3,9 +3,6 @@
 # Author: abento+github@gmail.com
 # Setup a set of cookbooks using chef-solo on a remote machine.
 
-hostname=amigrinder
-domain=amigrinder.minusnine.org
-
 cookbook_root="."
 file_root="chef-solo"
 tmp_root="."
@@ -70,7 +67,7 @@ pushConfig()
 runChefSolo()
 {
     echo "Running chef-solo on host $1"
-    ssh -t $1 "sudo chef-solo -c ./solo.rb -j ./run_list.json -r ./solo_cookbooks.tgz --log_level debug"
+    ssh -t $1 "sudo chef-solo -c ./solo.rb -j ./run_list.json -r ./solo_cookbooks.tgz"
 }
 
 if [ "$1" ]
@@ -79,10 +76,8 @@ if [ "$1" ]
     pushConfig $1
     runChefSolo $1
   else
-    for host in $hostname.$domain; do
-      pushConfig $host
-      runChefSolo $host
-    done
+    echo "usage: $0 <hostname>"
+    exit 3
 fi
 
 echo "chef-solo push and config run complete"
